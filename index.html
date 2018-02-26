@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="keywords" content="UartAssist">
+<meta name="description" content="UartAssist - Uart Testing Tool">
+<title>UartAssist</title>
+<link href="static/css/w3.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div id="pageName" class="w3-container w3-teal">
+  <h1 class="w3-text-shadow" style="text-align:center;color:#CC0000;">UartAssist</h1>
+</div>
+
+<div id="error"></div>
+
+<nav class="w3-sidenav w3-dark-grey" style="width:20%">
+<fieldset class="w3-container w3-border w3-hover-border-light-blue">
+  <legend>Port Settings</legend>
+  <table>
+    <tr>
+      <td>Port:</td>
+      <td>
+        <select name="Port" id="Port">
+          <option value="" disabled selected>Choose Port</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Baudrate:</td>
+      <td>
+        <select name="Baudrate" id="Baudrate">
+          <option value="" disabled selected>Choose Baudrate</option>
+          <option value="600">600</option>
+          <option value="1200">1200</option>
+          <option value="4800">4800</option>
+          <option value="9600">9600</option>
+          <option value="11400">11400</option>
+          <option value="19200">19200</option>
+          <option value="38400">38400</option>
+          <option value="57600">57600</option>
+          <option value="115200">115200</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <button class="w3-btn-floating" id="PortCtrlButton" value="Unknown"></button>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<fieldset class="w3-container w3-border w3-hover-border-light-blue">
+  <legend>Recv Options</legend>
+  <p>
+    <input class="w3-check" type="checkbox" id="Auto_NewLine" checked="checked">
+    <label class="w3-validate">Auto NewLine</label>
+  </p>
+  <p>
+    <input class="w3-check" type="checkbox" id="Display_Time" checked="checked">
+    <label class="w3-validate">Display Time</label>
+  </p>
+  <p>
+    <input class="w3-check" type="checkbox" id="Auto_Scroll" checked="checked">
+    <label class="w3-validate">Auto Scroll</label>
+  </p>
+  <p>
+    <input class="w3-check" type="checkbox" id="Disaplay_Hex">
+    <label class="w3-validate">Disaplay Hex</label>
+  </p>
+  <button class="w3-btn w3-ripple w3-left w3-light-blue" id="SaveIncomingDataArea">Save Receive</button>
+  <button class="w3-btn w3-ripple w3-right w3-light-blue" id="ClearIncomingDataArea">Clear Receive</button>
+</fieldset>
+<fieldset class="w3-container w3-border w3-hover-border-light-blue">
+  <legend>Send Options</legend>
+  <p>
+    <input class="w3-check" type="checkbox" id="Send_as_Hex">
+    <label class="w3-validate">Send as Hex</label>
+  </p>
+  <p>
+    <input class="w3-check" type="checkbox" id="AppendCRC" disabled="true">
+    <label class="w3-validate">Append CRC16</label>
+  </p>
+  <input type="file" id="selectedFile" style="display: none;" />
+  <button class="w3-btn w3-ripple w3-left w3-light-blue" id="LoadSendData">Load From File</button>
+  <button class="w3-btn w3-ripple w3-right w3-light-blue" id="ClearSendDataArea">Clear Send</button>
+</fieldset>
+</nav>
+
+<div class="Data w3-grey" style="margin-left:20%">
+<fieldset class="w3-container w3-border w3-hover-border-light-blue">
+  <legend>Data receive</legend>
+  <textarea style="width:100%;height:0;padding-top:40%;overflow-y:auto;resize:none;" id="IncomingDataArea" readonly="true"></textarea>
+</fieldset>
+
+<fieldset class="w3-container w3-border w3-hover-border-light-blue">
+  <legend>Data send</legend>
+  <textarea class="w3-container w3-threequarter" style="width:75%;resize:none;" id="SendDataArea" type="text"></textarea>
+  <button class="w3-btn w3-ripple w3-right w3-indigo w3-container w3-quarter" id="SendDataButton">Send</button>
+</fieldset>
+
+<fieldset class="w3-container w3-border w3-hover-border-light-blue" id="CRC16Result" hidden="true">
+  <legend>CRC16 Result [str + CRCL + CRCH]</legend>
+  <textarea class="w3-container" style="width:100%;resize:none;" id="CRC16ResultData" readonly="true"></textarea>
+</fieldset>
+</div>
+
+</body>
+
+<script>
+  require('./renderer.js')
+</script>
+
+</html>
