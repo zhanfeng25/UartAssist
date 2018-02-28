@@ -102,7 +102,6 @@ window.onload = function() {
   document.getElementById("Baudrate").disabled = false;
   document.getElementById("PortCtrlButton").value = "Open";
   document.getElementById("PortCtrlButton").innerHTML = "<img src='static/images/button_black.png' class='w3-image'>";
-  document.getElementById("SendDataButton").disabled = true;
 }
 
 document.getElementById("PortCtrlButton").addEventListener('click', function() {
@@ -145,14 +144,12 @@ document.getElementById("PortCtrlButton").addEventListener('click', function() {
     document.getElementById("Baudrate").disabled = true;
     document.getElementById("PortCtrlButton").value = "Close";
     document.getElementById("PortCtrlButton").innerHTML = "<img src='static/images/button_red.png' class='w3-image'>";
-    document.getElementById("SendDataButton").disabled = false;
     display_msg += ("Uart Connected\n");
   } else {
     document.getElementById("Port").disabled = false;
     document.getElementById("Baudrate").disabled = false;
     document.getElementById("PortCtrlButton").value = "Open";
     document.getElementById("PortCtrlButton").innerHTML = "<img src='static/images/button_black.png' class='w3-image'>";
-    document.getElementById("SendDataButton").disabled = true;
     display_msg += ("Uart Disconnected\n");
   }
 
@@ -166,12 +163,18 @@ document.getElementById("SendDataButton").addEventListener('click', function() {
     if (document.getElementById("AppendCRC").checked) {
       var str = CRC16(hexToString(document.getElementById("SendDataArea").value));
       document.getElementById("CRC16ResultData").value = stringToHex(str)
-      openPort.write(str);
+      if (openPort) {
+        openPort.write(str);
+      }
     } else {
-      openPort.write(hexToString(document.getElementById("SendDataArea").value));
+      if (openPort) {
+        openPort.write(hexToString(document.getElementById("SendDataArea").value));
+      }
     }
   } else {
-    openPort.write(document.getElementById("SendDataArea").value);
+    if (openPort) {
+      openPort.write(document.getElementById("SendDataArea").value);
+    }
   }
 }, false);
 
