@@ -9,8 +9,8 @@ let win
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 1600,
-    height: 900,
+    width: 1024,
+    height: 768,
     icon: path.join(__dirname, 'static/icons/64x64.png')
   })
 
