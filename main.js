@@ -13,7 +13,7 @@ function createWindow () {
     height: 768,
     minWidth: 1024,
     minHeight: 768,
-    icon: path.join(__dirname, 'static/icons/64x64.png')
+    icon: path.join(__dirname, 'static/icons/icon.png')
   })
 
   // and load the index.html of the app.
